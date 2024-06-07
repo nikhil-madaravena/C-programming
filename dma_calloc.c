@@ -26,5 +26,3 @@ int main(){
     }
     free(ptr);
 }
-
-
