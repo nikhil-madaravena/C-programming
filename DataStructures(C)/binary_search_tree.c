@@ -104,11 +104,30 @@ struct node *deleteNodeLeft(struct node *root, int key){
     return root;
 }
 
+//recursive
+void preorder(struct node *root){
+    if(root != NULL){
+        printf("%d ", root->data);
+        preorder(root->left);
+        preorder(root->right);
+    }
+    return;
+}
+
 void inorder(struct node *root){
     if(root != NULL){
     inorder(root->left);
     printf("%d ",root->data);
     inorder(root->right);
+    }
+    return;
+}
+
+void postorder(struct node *root){
+    if(root != NULL){
+        postorder(root->left);
+        postorder(root->right);
+        printf("%d ",root->data);
     }
     return;
 }
@@ -123,8 +142,16 @@ int main(){
     root = insertNode(root, 60);
     root = insertNode(root, 70);
 
+    printf("preorder: ");
+    preorder(root);
+    printf("\n");
+
     printf("Inorder: ");
     inorder(root);
+    printf("\n");
+
+    printf("postorder: ");
+    postorder(root);
     printf("\n");
 
     root = deleteNodeRight(root, 20);
