@@ -9,8 +9,6 @@ struct Node {
     int height;
 };
 
-typedef struct Node Node;
-
 // Function to get the height of a node
 int height(struct Node *node) {
     if (node == NULL)
@@ -129,14 +127,14 @@ void inOrder(struct Node *root) {
 }
 
 
-struct Node *findMinNode(Node *node){
-	Node *current=node;
+struct Node *findMinNode(struct Node *node){
+	struct Node *current=node;
 	while(current->left!=NULL)
 		current=current->left;
 	return current;
 }
 
-struct Node *deleteNode(Node *root,int key){
+struct Node *deleteNode(struct Node *root,int key){
 	if(root==NULL)
 		return root;
 		
@@ -148,7 +146,7 @@ struct Node *deleteNode(Node *root,int key){
 	else{
 		
 		if((root->left==NULL)||(root->right==NULL)){
-			Node *temp=root->left?root->left:root->right;
+			struct Node *temp=root->left?root->left:root->right;
 			
 			if(temp==NULL){
 				temp==root;
@@ -160,7 +158,7 @@ struct Node *deleteNode(Node *root,int key){
 		}
 		else{
 			
-			Node *temp=findMinNode(root->right);
+			struct Node *temp=findMinNode(root->right);
 			root->key=temp->key;
 			root->right=deleteNode(root->right,temp->key);
 			
@@ -207,11 +205,13 @@ int main() {
     // Print the AVL tree in-order
     printf("In-order traversal of AVL tree: ");
     inOrder(root);
+    printf("\n");
 
 	deleteNode(root, 30);
 	
-	printf("Traversal after : ");
+	printf("Traversal after deletion : ");
 	inOrder(root);
+    printf("\n");
 	
     return 0;
 }
