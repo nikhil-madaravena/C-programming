@@ -179,6 +179,25 @@ void preorder(struct node* root) {
     }
 }
 
+void searchNode(struct node* root, int data) {
+    struct node* curr = root;
+    
+    while (curr != NULL) {
+        if (data == curr->data) {
+            printf("Key found! \n");
+            return;
+        }
+        else if (data < curr->data) {
+            curr = curr->left; 
+        } else {
+            curr = curr->right;
+        }
+    }
+    
+    printf("key not found! ");
+}
+
+
 void postorder(struct node* root) {
     if (root == NULL) return;
 
@@ -232,6 +251,12 @@ int main() {
     printf("Inorder after deleting 60: ");
     inorder(root);
     printf("\n");
+
+    int key;
+    printf("Enter key to search: ");
+    scanf("%d", &key);
+    searchNode(root,key);
+
 
     return 0;
 }

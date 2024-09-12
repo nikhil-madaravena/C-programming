@@ -132,6 +132,25 @@ void postorder(struct node *root){
     return;
 }
 
+void searchNode(struct node* root, int data) {
+    struct node* curr = root;
+    
+    while (curr != NULL) {
+        if (data == curr->data) {
+            printf("Key found! \n");
+            return;
+        }
+        else if (data < curr->data) {
+            curr = curr->left; 
+        } else {
+            curr = curr->right;
+        }
+    }
+    
+    printf("key not found! ");
+}
+
+
 int main(){
     struct node *root = NULL;
     root = insertNode(root, 10);
@@ -163,4 +182,9 @@ int main(){
     printf("After deletion : ");
     inorder(root);
     printf("\n");
+
+    int key;
+    printf("Enter key to search: ");
+    scanf("%d", &key);
+    searchNode(root,key);
 }
