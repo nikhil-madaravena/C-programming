@@ -117,15 +117,32 @@ struct Node *insert(struct Node *node, int key) {
     return node;
 }
 
-// Function to print the AVL tree in-order
-void inOrder(struct Node *root) {
-    if (root != NULL) {
-        inOrder(root->left);
+void preorder(struct Node *root){
+    if(root != NULL){
         printf("%d ", root->key);
-        inOrder(root->right);
+        preorder(root->left);
+        preorder(root->right);
     }
+    return;
 }
 
+void inorder(struct Node *root){
+    if(root != NULL){
+    inorder(root->left);
+    printf("%d ",root->key);
+    inorder(root->right);
+    }
+    return;
+}
+
+void postorder(struct Node *root){
+    if(root != NULL){
+        postorder(root->left);
+        postorder(root->right);
+        printf("%d ",root->key);
+    }
+    return;
+}
 
 struct Node *findMinNode(struct Node *node){
 	struct Node *current=node;
@@ -191,6 +208,24 @@ struct Node *deleteNode(struct Node *root,int key){
 	return root;
 }
 
+void searchNode(struct Node* root, int data) {
+    struct Node* curr = root;
+    
+    while (curr != NULL) {
+        if (data == curr->key) {
+            printf("Key found! \n");
+            return;
+        }
+        else if (data < curr->key) {
+            curr = curr->left; 
+        } else {
+            curr = curr->right;
+        }
+    }
+    
+    printf("key not found! ");
+}
+
 int main() {
     struct Node *root = NULL;
 
@@ -202,16 +237,28 @@ int main() {
     root = insert(root, 50);
     root = insert(root, 25);
 
-    // Print the AVL tree in-order
-    printf("In-order traversal of AVL tree: ");
-    inOrder(root);
+    printf("preorder: ");
+    preorder(root);
+    printf("\n");
+
+    printf("Inorder: ");
+    inorder(root);
+    printf("\n");
+
+    printf("postorder: ");
+    postorder(root);
     printf("\n");
 
 	deleteNode(root, 30);
 	
 	printf("Traversal after deletion : ");
-	inOrder(root);
+	inorder(root);
     printf("\n");
+
+    int key;
+    printf("Enter key to search: ");
+    scanf("%d", &key);
+    searchNode(root,key);
 	
     return 0;
 }
