@@ -82,7 +82,7 @@ struct node *deleteNodeLeft(struct node *root, int data) {
         return root;
 
     if (curr->left == NULL || curr->right == NULL) {
-        struct node *temp = (curr->left) ? curr->left : curr->right;
+        struct node *temp = (curr->left != NULL) ? curr->left : curr->right;
 
         if (par == NULL)
             root = temp;
