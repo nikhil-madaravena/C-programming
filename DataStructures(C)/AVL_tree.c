@@ -48,21 +48,21 @@ struct Node *rightRotate(struct Node *y) {
     return x;
 }
 
-// Function to left rotate a subtree rooted with x
-struct Node *leftRotate(struct Node *x) {
-    struct Node *y = x->right;
-    struct Node *T2 = y->left;
+// Function to left rotate a subtree rooted with y
+struct Node *leftRotate(struct Node *y) {
+    struct Node *x = y->right;
+    struct Node *T2 = x->left;
 
     // Perform rotation
-    y->left = x;
-    x->right = T2;
+    x->left = y;
+    y->right = T2;
 
     // Update heights
     x->height = max(height(x->left), height(x->right)) + 1;
     y->height = max(height(y->left), height(y->right)) + 1;
 
     // Return new root
-    return y;
+    return x;
 }
 
 // Function to get the balance factor of a node
