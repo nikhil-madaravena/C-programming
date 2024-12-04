@@ -20,7 +20,7 @@ int main(){
             pos=mid;
             break;
         }  
-        else if(a[mid]<key){
+        else if(a[mid]>key){
             ub = mid - 1;
         }
         else{
